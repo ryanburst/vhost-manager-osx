@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# Working with Apache 2.4 and Mac OS Sierra by @SwankyLynx
 
 HOSTS = "/etc/hosts"
 VHOSTSDIR = "/etc/apache2/extra/vhosts/" # needs trailing slash
@@ -58,14 +59,18 @@ end
 def make_vhost
   puts "\tMaking vhost file in #{@vhost_path}..."
   File.open(@vhost_path, 'a') do |f|
-    f.puts "<Directory \"#{@path}\">"
-    f.puts "  Options Indexes FollowSymLinks MultiViews"
-    f.puts "  AllowOverride All"
-    f.puts "  Require All Granted"
-    f.puts "</Directory>"
     f.puts "<VirtualHost *:80>"
+    f.puts "  ServerAdmin webmaster@#{@domain}"
     f.puts "  DocumentRoot \"#{@path}\""
     f.puts "  ServerName #{@domain}"
+    f.puts "  ServerAlias www.#{@domain}"
+    f.puts "  ErrorLog \"/private/var/log/apache2/#{@domain.split(/\s|\./)[0]}-error_log\""
+    f.puts "  CustomLog \"/private/var/log/apache2/#{@domain.split(/\s|\./)[0]}-access_log\" common"
+    f.puts "  <Directory \"#{@path}\">"
+    f.puts "    Options Indexes FollowSymLinks MultiViews"
+    f.puts "    AllowOverride All"
+    f.puts "    Require all granted"
+    f.puts "  </Directory>"
     f.puts "</VirtualHost>"
   end
 end
