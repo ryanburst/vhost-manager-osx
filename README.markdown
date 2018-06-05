@@ -2,7 +2,7 @@
 
 A little script to quickly add virtual hosts to your local Apache configuration for development purposes on Mac OS X.
 
-Given a name like "example.dev" and a path to the files for the site root directory, it will make the site appear at http://example.dev.
+Given a name like "example.site" and a path to the files for the site root directory, it will make the site appear at http://example.site.
 
 Currently it have been tested on Apache 2.4.23 and Mac OS Sierra.
 
@@ -38,21 +38,37 @@ That's it, now you can start to use it.
 
 ## Usage
 
-Create folder for your domain in your *Sites* dir (`$HOME/Sites`), for instance: *example* (for real, it doesn't matter how you'll name it)
+Create folder for your domain in your *Sites* or *Code* dir (`$HOME/Sites`), for instance: *example* (for real, it doesn't matter how you'll name it)
 
 ```sh
 mkdir $HOME/Sites/example
 ```
 
-Next open Terminal and do like this to add `example.dev` (it's what you will type in your browser):
+Next open Terminal and do like this to add `example.site` (it's what you will type in your browser):
 
 ```sh
-vhostman add example.dev $HOME/Sites/example
+vhostman add example.site --webroot=$HOME/Sites/example
 ```
 
 Apache will be restarted and virtual host config will be applied to get it work.
 
-That’s it! You can view your site in browser: http://example.dev.
+That’s it! You can view your site in browser: http://example.site.
+
+### Editing an Existing Site
+You can change the host name, webroot, or both with the following usage:
+
+```sh
+vhostman edit example.site --new=testing.site --webroot=$HOME/Sites/testing
+```
+
+At least one of the ```--new``` and ```--webroot``` options must be used.
+
+### Removing an Existing Site
+Removing an existing site is easy, all you need is the site host name and it will remove the reference in your host file as well as the configuration file.
+
+```sh
+vhostman remove example.site
+```
 
 ### Fixing issues
 
