@@ -35,6 +35,8 @@ def check_args
   # Add must have three arguments, the command, the name of the site, and the webroot
   if @command == 'add' && (ARGV.count != 3 || !@options['webroot'])
     usage(@command)
+  # Edit must have at least three arguments, the command, the name of the site, and either the
+  # new name of the site or a new webroot
   elsif @command == 'edit' && (ARGV.count < 3 || (!@options['new'] && !@options['webroot']))
     usage(@command)
   end
