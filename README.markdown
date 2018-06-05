@@ -38,16 +38,16 @@ That's it, now you can start to use it.
 
 ## Usage
 
-Create folder for your domain in your *Sites* or *Code* dir (`$HOME/Sites`), for instance: *example* (for real, it doesn't matter how you'll name it)
+Create folder for your domain in your or *Code* directory (`$HOME/Code`), for instance: *example* (for real, it doesn't matter how you'll name it)
 
 ```sh
-mkdir $HOME/Sites/example
+mkdir $HOME/Code/example
 ```
 
 Next open Terminal and do like this to add `example.site` (it's what you will type in your browser):
 
 ```sh
-vhostman add example.site --webroot=$HOME/Sites/example
+vhostman add example.site --webroot=$HOME/Code/example
 ```
 
 Apache will be restarted and virtual host config will be applied to get it work.
@@ -58,7 +58,7 @@ That’s it! You can view your site in browser: http://example.site.
 You can change the host name, webroot, or both with the following usage:
 
 ```sh
-vhostman edit example.site --new=testing.site --webroot=$HOME/Sites/testing
+vhostman edit example.site --new=testing.site --webroot=$HOME/Code/testing
 ```
 
 At least one of the ```--new``` and ```--webroot``` options must be used.
