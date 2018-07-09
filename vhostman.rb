@@ -110,9 +110,11 @@ def make_vhost
     f.puts "  ErrorLog \"/private/var/log/apache2/#{@domain.split(/\s|\./)[0]}-error_log\""
     f.puts "  CustomLog \"/private/var/log/apache2/#{@domain.split(/\s|\./)[0]}-access_log\" common"
     f.puts "  <Directory \"#{@webroot}\">"
-    f.puts "    Options Indexes FollowSymLinks MultiViews"
+    f.puts "    Options Indexes FollowSymLinks MultiViews Includes"
     f.puts "    AllowOverride All"
     f.puts "    Require all granted"
+    f.puts "    AddType text/html .shtml .html"
+    f.puts "    AddOutputFilter INCLUDES .shtml .html"
     f.puts "  </Directory>"
     f.puts "</VirtualHost>"
   end

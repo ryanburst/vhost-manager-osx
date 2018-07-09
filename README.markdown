@@ -34,6 +34,12 @@ Ensure it's executable:
 chmod 777 $HOME/somewhere/vhostman.rb
 ```
 
+**If you want to enable Server Side Includes (SSI), you must edit the ```httpd.conf``` file and uncomment the includes module. It looks like this:**
+
+```apache
+LoadModule include_module libexec/apache2/mod_include.so
+```
+
 That's it, now you can start to use it.
 
 ## Usage
